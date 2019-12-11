@@ -1,0 +1,44 @@
+
+  <div class="container">
+        <br/>  
+        <div class="row">
+                <div class="col-sm-6"><h2>Products</h2> </div>
+                <div class=" ml-auto"><a class="btn btn-primary"  routerLink="/admin/products/new"> New Product</a> </div>
+              </div>
+        <br/>        
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Course Author</th>
+              <th>Course Name</th>
+              <th>Course category</th>
+              <th>Course image</th>
+              <th>Course Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr [id]="post._id" *ngFor="let post of posts">
+              <td class="text-capitalize">{{post.title}}</td>
+              <td>{{post.price}}</td>
+              <td> {{post.category}} </td>
+              <td><div *ngIf="post.imgUrl">
+                    <img width="60" class="mx-auto d-block img-responsive img-fluid" 
+                    [src]="post.imgUrl" [alt]="post.title">
+                  </div> </td>
+              <td>{{post.date  | date}}</td>
+              <td> 
+                  <!-- routerLink="/crud"[queryParams]="{id:post._id }" -->
+                <a class="btn btn-outline-secondary"  routerLink="/admin/products/{{post._id}}">Edit</a>  &nbsp;
+                <button type="button" class="btn btn-outline-danger" (click)="deleteCourse(post)">Delete</button> 
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+      <br/>
+      <br/>
+
+

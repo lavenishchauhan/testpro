@@ -1,0 +1,89 @@
+
+
+
+
+
+    <!-- <app-check-out> </app-check-out> -->
+
+
+
+
+
+
+<!-- 
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="nav-link" [class.active]="viewModel == 'map'" 
+      (click)="viewModel='map'">Map View</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [class.active]="viewModel == 'list'" 
+      (click)="viewModel='list'">List View</a>
+    </li>
+  </ul>
+  <br/>
+  <div [ngSwitch]="viewModel">
+    <div *ngSwitchCase="'map'"> Map View Content</div>
+    <div *ngSwitchCase="'list'">List View Content</div>
+    <div *ngSwitchDefault>Otherwise</div>
+  </div>
+
+
+<br/>
+<br/>
+
+  <div *ngIf="courses.length > 0; else noCourses"> Course List (ngIf) </div>
+  <ng-template #noCourses> No Course (ngIf)</ng-template>
+
+  <div [hidden]="courses.length == 0"> Course List (hidden) </div>
+  <div [hidden]="courses.length > 0"> No Course (hidden)</div>
+
+  <br/>
+  <br/>
+
+  <button (click)="loadProduct()">loadProduct</button>
+  <div *ngFor="let product of products; trackBy:trackProduct">
+    {{product.id}} :  {{product.name}}
+  </div> -->
+
+
+
+<div *ngIf="!authService.isLoggedIn()">
+  <div class="container">
+    <app-bs-navbar></app-bs-navbar>
+    <app-home></app-home>
+    <router-outlet> </router-outlet>
+  </div>
+</div>
+
+
+
+
+
+<div *ngIf="authService.isLoggedIn()">
+    <div class="d-flex" id="wrapper">
+        <div class="bg-light border-right" id="sidebar-wrapper" style="min-width:200px; min-height:100vh;">
+          <div class="sidebar-heading" style="height: 55px; line-height: 55px;">  
+            <img width="40" 
+            src ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTbWINZ8I9f2fDOHmcyIKGd2ihupmNhJDHGFLU40KJ3fd3Enfy&s" />
+             Dashboard </div>
+          <div class="list-group list-group-flush" style="border-bottom: 1px solid #ddd;">
+            <a routerLink="/admin/products" class="list-group-item list-group-item-action bg-light">Products</a>
+          </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper" style="width:100%;">
+            <app-bs-navbar></app-bs-navbar>
+          <div class="container-fluid">
+            <app-home></app-home>
+            <router-outlet> </router-outlet> 
+          </div>
+        </div>
+      </div>
+      <!-- /#wrapper -->
+</div>
+
+
+
+

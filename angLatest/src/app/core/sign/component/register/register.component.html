@@ -1,0 +1,111 @@
+
+
+
+
+
+
+<div class="row">
+  <div class="col-md-6 mx-auto">
+
+
+<br/>
+<br/>
+<div class="card">
+    <div class="card-header"> <h2 class="form-signin-heading">Register</h2> </div>
+    <div class="card-body">
+
+       
+
+        <form #register="ngForm" (ngSubmit)="register.form.valid && registerUser(register)" novalidate>
+  
+  
+          <div class="alert" [hidden]="!messageInfo"  
+          [class.alert-success]="formSuccess"  
+          [class.alert-danger]="formError">
+         {{MessageType}}
+      </div> 
+    
+            <div class="form-group">
+                <label for="name"> Name</label>
+                <input required="required" [pattern]="Regex.alpha" [(ngModel)]="registerUserData.name" name="name"
+                  #name='ngModel'
+                  [ngClass]="!name.valid &&  (name.touched || register.submitted) ? 'input-error' : '' "
+                  id="name" class="form-control" type="text" placeholder="Name">
+                <!--start-form-error-->
+                <div class="form-error alert alert-danger"
+                  *ngIf="!name.valid && (name.touched || (register.submitted && register.touched) )">
+                  <div *ngIf="name.errors.required">
+                      Name  is required
+                  </div>
+                  <div *ngIf="name.errors.pattern">
+                      Name doesn't match the pattern
+                  </div>
+                </div>
+                <!--end-form-error-->
+              </div>
+              <!--end-form-group -->
+      
+    
+    
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input required="required" [pattern]="Regex.email" [(ngModel)]="registerUserData.email" name="email"
+                #email='ngModel'
+                [ngClass]="!email.valid &&  (email.touched || register.submitted) ? 'input-error' : '' "
+                id="email" class="form-control" type="email" placeholder="Email Address">
+              <!--start-form-error-->
+              <div class="form-error alert alert-danger"
+                *ngIf="!email.valid && (email.touched || (register.submitted && register.touched) )">
+                <div *ngIf="email.errors.required">
+                    Email  is required
+                </div>
+                <div *ngIf="email.errors.pattern">
+                    Email doesn't match the pattern
+                </div>
+              </div>
+              <!--end-form-error-->
+            </div>
+            <!--end-form-group -->
+    
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input required="required" [pattern]="Regex.pwd" [(ngModel)]="registerUserData.password" name="password"
+                #password='ngModel'
+                [ngClass]="!password.valid &&  (password.touched || register.submitted) ? 'input-error' : '' "
+                id="password" class="form-control" type="password" placeholder="Password">
+              <div class="form-error alert alert-danger"
+                *ngIf="!password.valid && (password.touched || (register.submitted && register.touched))">
+                <div *ngIf="password.errors.required">
+                  Password  is required
+                </div>
+              
+                <div *ngIf="password.errors.pattern">
+                  Your Password must contain at least one capital letter, one number, one special character,  must be at least 8 characters
+                </div>
+              </div>
+              <!--end-form-error-->
+            </div>
+       
+    
+            <!-- <br /> -->
+            <!-- <p>{{register.value | json}} </p> -->
+            <div class="form-group">
+                <!-- [disabled]="!register.valid" -->
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+
+
+
+
+
+
+
+
+
+    </div> 
+   
+  </div>
+
+</div>
+</div>
