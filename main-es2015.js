@@ -240,7 +240,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n\n<br/>\n\n\n\n<div class=\"row\">\n    <div class=\"col-md-3\">\n      <div class=\"sticky-top\"> <product-filter [category]=\"category\"> </product-filter> </div>  \n    </div>\n    <div class=\"col-md-9 promain\">\n        <div class=\"row\">\n            <ng-container *ngFor=\"let post of filteredProducts; let i=index\">\n                <div class=\"col\">\n                <product-card [product]=\"post\" [show-actions]=\"true\" [shopping-cart]=\"post.quantity\"> </product-card>\n                </div>\n                <div *ngIf=\"(i+1) % 2 === 0\" class=\"w-100\"></div>\n            </ng-container>\n        </div>\n    </div>\n</div>\n\n\n\n\n\n\n\n\n\n\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\n\n<br/>\n\n\n\n<div class=\"row\">\n    <div class=\"col-md-3\">\n      <div class=\"sticky-top\"> <product-filter [category]=\"category\"> </product-filter> </div>  \n    </div>\n    <div class=\"col-md-9 promain\">\n        <div class=\"loading-product\" [hidden]=\"!loading\"> \n            <img src=\"https://media1.tenor.com/images/db85ba00c6073b451a8f05156a66524e/tenor.gif?itemid=9856796\" alt=\"Loading Product\"/> \n         </div>\n        <div class=\"row\">\n            <ng-container *ngFor=\"let post of filteredProducts; let i=index\">\n                <div class=\"col\">\n                <product-card [product]=\"post\" [show-actions]=\"true\" [shopping-cart]=\"post.quantity\"> </product-card>\n                </div>\n                <div *ngIf=\"(i+1) % 2 === 0\" class=\"w-100\"></div>\n            </ng-container>\n        </div>\n    </div>\n</div>\n\n\n\n\n\n\n\n\n\n\n\n");
 
 /***/ }),
 
@@ -1195,6 +1195,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./shared/shared.module */ "./src/app/shared/shared.module.ts");
 /* harmony import */ var _shopping_shopping_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./shopping/shopping.module */ "./src/app/shopping/shopping.module.ts");
 /* harmony import */ var _shopping_services_server_request_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./shopping/services/server-request.service */ "./src/app/shopping/services/server-request.service.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+
 
 
 
@@ -1241,6 +1243,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         providers: [
             _shopping_services_server_request_service__WEBPACK_IMPORTED_MODULE_17__["ServerRequestService"],
             { provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ErrorHandler"], useClass: _shared_common_validators_app_error_handler__WEBPACK_IMPORTED_MODULE_12__["AppErrorHandler"] },
+            { provide: _angular_common__WEBPACK_IMPORTED_MODULE_18__["LocationStrategy"], useClass: _angular_common__WEBPACK_IMPORTED_MODULE_18__["HashLocationStrategy"] },
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
     })
@@ -2298,6 +2301,7 @@ let ProductsComponent = class ProductsComponent {
         this.cartService = cartService;
         this.products = [];
         this.filteredProducts = [];
+        this.loading = true;
         let ItemCart = this.GetCartItem();
         ItemCart.then(quan => {
             this.cartItem = quan;
@@ -2305,6 +2309,9 @@ let ProductsComponent = class ProductsComponent {
         this.serverRequest.getAll('products')
             .subscribe(res => {
             console.log('params res', res);
+            if (res) {
+                this.loading = false;
+            }
             this.products = res;
             //  this.filteredProducts =  this.products ;
             // Add  quantity Key For show product page
