@@ -41,7 +41,7 @@ import { CartService } from './services/cart.service';
         RouterModule.forChild([
             {
                 path: '',
-                component: ProductsComponent,  canActivate: [loginAuthGuard]
+                component: ProductsComponent,  canActivate: [loginAuthGuard] 
               },
               { path: 'shoppingcart', component: ShoppingCartComponent },
            

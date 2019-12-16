@@ -16,7 +16,7 @@ import { MaterialModule } from './shared/material/material.module';
 import { SharedModule } from './shared/shared.module';
 import { ShoppingModule } from './shopping/shopping.module';
 import { ServerRequestService } from './shopping/services/server-request.service';
-
+import {HashLocationStrategy, Location, LocationStrategy} from '@angular/common';
 
 
 @NgModule({
@@ -45,6 +45,8 @@ import { ServerRequestService } from './shopping/services/server-request.service
   providers: [
     ServerRequestService,
      {provide: ErrorHandler, useClass: AppErrorHandler},
+     {provide: LocationStrategy, useClass: HashLocationStrategy},
+     
   ],
   bootstrap: [AppComponent]
 })

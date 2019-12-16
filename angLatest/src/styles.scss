@@ -3,6 +3,18 @@
 
 
 
+.promain .loading-product img {
+    position: absolute;
+    z-index: 999;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 240px;
+    height: 240px;
+}
+
+
+
 .form-error {
     background: #b41c31;
     font-size: 12px;
@@ -24,7 +36,9 @@
     position: relative;
 }
 
-
+.col-md-9.promain {
+    position: relative;
+}
 
 
 .card-footer {

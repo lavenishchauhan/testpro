@@ -1,17 +1,18 @@
 
 
-<br/>
-
 
 
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3  mt-3">
       <div class="sticky-top"> <product-filter [category]="category"> </product-filter> </div>  
     </div>
     <div class="col-md-9 promain">
+        <div class="loading-product" [hidden]="!loading"> 
+            <img src="https://media1.tenor.com/images/db85ba00c6073b451a8f05156a66524e/tenor.gif?itemid=9856796" alt="Loading Product"/> 
+         </div>
         <div class="row">
             <ng-container *ngFor="let post of filteredProducts; let i=index">
-                <div class="col">
+                <div class="col-md-6 mt-3">
                 <product-card [product]="post" [show-actions]="true" [shopping-cart]="post.quantity"> </product-card>
                 </div>
                 <div *ngIf="(i+1) % 2 === 0" class="w-100"></div>

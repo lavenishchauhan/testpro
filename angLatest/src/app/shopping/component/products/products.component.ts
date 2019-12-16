@@ -17,6 +17,8 @@ export class ProductsComponent  {
   category:any;
   cartItem:any;
 
+  loading = true;
+
   constructor(private serverRequest: ServerRequestService,
   private route: ActivatedRoute, private cartService:CartService) { 
 
@@ -28,7 +30,18 @@ export class ProductsComponent  {
     this.serverRequest.getAll('products')
     .subscribe(res => {
       console.log('params res',res);
+
+      if(res){
+        this.loading=false;
+      }
+           
+
+
       this.products = res;
+
+     
+
+
     //  this.filteredProducts =  this.products ;
 
      // Add  quantity Key For show product page
